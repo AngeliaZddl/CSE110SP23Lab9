@@ -165,6 +165,7 @@
             break;
           case "Trigger a Global Error":
             throwException();
+            alert( func() );
             break;
         }
       });
@@ -193,7 +194,7 @@
     } finally {
       console.log('Done');
     }
-    alert( func() );
+    
 
     TrackJS.track('Testing TrackJS!');
 
