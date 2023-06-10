@@ -202,7 +202,10 @@
               } else {
                 throw err; // unknown error, rethrow it (**)
               }
+            } finally{
+              console.log('Done');
             }
+            alert( func() );
             break;
         }
       });
