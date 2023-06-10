@@ -102,17 +102,13 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
-    // Define a counter for the Console Count button
-    let count = 0;
 
-    // Define an object for the Console Table button
-    let obj = {name: "John", age: 25, city: "New York"};
+    let obj = {name: "KKK", age: 111, city: "California", gender: ""};
 
-    // Define a timer label for the Start Timer and End Timer buttons
     let timerLabel = "Timer";
 
     let str = "aaa"
-    // Add functionality to the buttons
+
     errorBtns.forEach(button => {
       button.addEventListener('click', function() {
         switch(this.innerText) {
@@ -129,7 +125,7 @@
             console.warn("Console Warn Demo");
             break;
           case "Console Assert":
-            console.assert((tt == "Console Assert Demo"), "Console Assert Demo");
+            console.assert((str == "Console Assert Demo"), "Console Assert Demo");
             break;
           case "Console Clear":
             console.clear();
@@ -165,7 +161,6 @@
         }
       });
     });
-
   </script>
 </body>
 
