@@ -165,7 +165,6 @@
             break;
           case "Trigger a Global Error":
             throwException();
-            alert( func() );
             break;
         }
       });
@@ -178,23 +177,32 @@
           this.name = "ValidationError";
         }
       }
-    }
-
-    function func() {
-      if (!obj.gender) {
-        throw new ValidationError("No gender provided!");
+      function func(json) {
+        let user = JSON.parse(json);
+        if (!user.age) {
+          throw new PropertyRequiredError("age");
+        }
+        if (!user.name) {
+          throw new PropertyRequiredError("name");
+        }
+        return user;
       }
-      return obj;
+      try {
+        let user = func('{ "age": 25 }');
+      } catch(error) {
+        if (err instanceof ValidationError) {
+          alert("Invalid data: " + err.message); // Invalid data: No property: name
+          alert(err.name); // PropertyRequiredError
+          alert(err.property); // name
+        } else if (err instanceof SyntaxError) {
+          alert("JSON Syntax Error: " + err.message);
+        } else {
+          throw err; // unknown error, rethrow it
+        }
+      } finally {
+        console.log('Done');
+      }
     }
-    try {
-      func();
-    } catch(error) {
-      alert("Invalid gender: " + error.message);
-      console.log("Catch the error");
-    } finally {
-      console.log('Done');
-    }
-    
 
     TrackJS.track('Testing TrackJS!');
 
