@@ -87,6 +87,14 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "f736a37c15554133845cbad1644c0644",
+      application: "cse110-lab9"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -156,11 +164,39 @@
             console.trace("Console Trace Demo");
             break;
           case "Trigger a Global Error":
-            throw new Error("Triggered Global Error");
+            throwException();
             break;
         }
       });
     });
+
+    function throwException() {
+      class ValidationError extends Error {
+        constructor(message) {
+          super(message);
+          this.name = "ValidationError";
+        }
+      }
+    }
+
+    function func() {
+      if (!obj.gender) {
+        throw new ValidationError("No gender provided!");
+      }
+      return obj;
+    }
+    try {
+      func();
+    } catch(error) {
+      alert("Invalid gender: " + error.message);
+      console.log("Catch the error");
+    } finally {
+      console.log('Done');
+    }
+    alert( func() );
+
+    TrackJS.track('Testing TrackJS!');
+
   </script>
 </body>
 
