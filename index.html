@@ -205,7 +205,14 @@
             } finally{
               console.log('Done');
             }
+
             alert( func() );
+            
+            function badCode() {
+              alert('Good code running when suddenly...');
+              abooM('bad code!'); /* BAD CODE ON PURPOSE */ 
+            }
+
             break;
         }
       });
