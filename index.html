@@ -189,7 +189,7 @@
       }
       try {
         let user = func('{ "age": 25 }');
-      } catch(error) {
+      } catch(err) {
         if (err instanceof ValidationError) {
           alert("Invalid data: " + err.message); // Invalid data: No property: name
           alert(err.name); // PropertyRequiredError
