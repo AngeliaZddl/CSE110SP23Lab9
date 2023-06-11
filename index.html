@@ -88,6 +88,7 @@
   </main>
 
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script src="http://ajaxref.com/ch2/errorreporter.js" type="text/javascript"></script>
   <script>
     window.TrackJS.install({ 
       token: "f736a37c15554133845cbad1644c0644",
@@ -116,6 +117,11 @@
     let timerLabel = "Timer";
 
     let str = "aaa"
+
+    function badCode(){
+      alert('Good code running when suddenly...');
+      abooM('bad code!'); /* BAD CODE ON PURPOSE */ 
+    }
 
     errorBtns.forEach(button => {
       button.addEventListener('click', function() {
@@ -170,19 +176,13 @@
                 this.name = "ValidationError";
               }
             }
-            class PropertyRequiredError extends ValidationError {
-              constructor(property) {
-                super("No property: " + property);
-                this.name = "PropertyRequiredError";
-                this.property = property;
-              }
-            }
             function tryFunc() {
               let json = '{ "age": 25 }'
 
               try {
                 let user = JSON.parse(json);
                 console.log("Try");
+                alert( badCode() );
                 throw new ValidationError("Error occur");
               } catch (err) {
                 alert("Invalid data: " + err.message);
@@ -194,17 +194,11 @@
             }
             
             alert( tryFunc() );
-
-            function badCode() {
-              alert('Good code running when suddenly...');
-              abooM('bad code!'); /* BAD CODE ON PURPOSE */ 
-            }
-            alert(badCode());
+            
             break;
         }
       });
     });
-
     TrackJS.track('Testing TrackJS!');
 
   </script>
