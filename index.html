@@ -182,7 +182,6 @@
               try {
                 let user = JSON.parse(json);
                 console.log("Try");
-                alert( badCode() );
                 throw new ValidationError("Error occur");
               } catch (err) {
                 alert("Invalid data: " + err.message);
@@ -194,7 +193,7 @@
             }
             
             alert( tryFunc() );
-            
+            alert( badCode() );
             break;
         }
       });
