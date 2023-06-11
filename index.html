@@ -177,42 +177,29 @@
                 this.property = property;
               }
             }
-            function readUser(json) {
-              let user = JSON.parse(json);
+            function tryFunc() {
+              let json = '{ "age": 25 }'
 
-              if (!user.age) {
-                throw new ValidationError("No field: age");
+              try {
+                let user = JSON.parse(json);
+                console.log("Try");
+                throw new ValidationError("Error occur");
+              } catch (err) {
+                alert("Invalid data: " + err.message);
+                console.log("Catch");
+              } finally{
+                console.log('Done');
               }
-              if (!user.name) {
-                throw new ValidationError("No field: name");
-              }
-
               return user;
             }
-
-            // Working example with try..catch
-
-            try {
-              let user = readUser('{ "age": 25 }');
-            } catch (err) {
-              if (err instanceof ValidationError) {
-                alert("Invalid data: " + err.message); // Invalid data: No field: name
-              } else if (err instanceof SyntaxError) { // (*)
-                alert("JSON Syntax Error: " + err.message);
-              } else {
-                throw err; // unknown error, rethrow it (**)
-              }
-            } finally{
-              console.log('Done');
-            }
-
-            alert( func() );
             
+            alert( tryFunc() );
+
             function badCode() {
               alert('Good code running when suddenly...');
               abooM('bad code!'); /* BAD CODE ON PURPOSE */ 
             }
-
+            alert(badCode());
             break;
         }
       });
