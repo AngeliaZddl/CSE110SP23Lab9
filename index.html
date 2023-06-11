@@ -118,11 +118,6 @@
 
     let str = "aaa"
 
-    function badCode(){
-      alert('Good code running when suddenly...');
-      abooM('bad code!'); /* BAD CODE ON PURPOSE */ 
-    }
-
     errorBtns.forEach(button => {
       button.addEventListener('click', function() {
         switch(this.innerText) {
@@ -189,11 +184,15 @@
               } finally{
                 console.log('Done');
               }
-              return user;
             }
             
-            alert( tryFunc() );
-            alert( badCode() );
+            alert(tryFunc());
+            
+            function badCode(){
+              alert('Good code running when suddenly...');
+              abooM('bad code!'); /* BAD CODE ON PURPOSE */ 
+            }
+            alert(badCode());
             break;
         }
       });
